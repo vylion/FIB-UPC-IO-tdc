@@ -17,12 +17,13 @@ param alpha;
 #VARIABLES
 var t {j in NODOS} default 0;
 # momento en que termina el trabajo [i,j]
-var tau {(i,j) in ARCOS} default tau_worst[i,j];
+var tau {(i,j) in ARCOS};
 # duracion de trabajo [i,j]
 
 #FUNCION Y RESTRICCIONES
 
-minimize time: (t[dest]) + (sum {(i,j) in ARCOS} (tau_worst[i,j] - tau[i,j])*cost[i,j]);
+minimize time :
+	alpha*(t[dest]) + (1-alpha)*(sum {(i,j) in ARCOS} (tau_worst[i,j] - tau[i,j])*cost[i,j]);
 subject to r1 {(i,j) in ARCOS}:
 	t[i] + tau[i,j] - t[j] <= 0;
 subject to r2 {i in NODOS}:

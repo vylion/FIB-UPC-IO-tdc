@@ -2,21 +2,21 @@ set NODOS := 1 2 3 4 5 6 7 8 9 10 ;
 
 param orig := 1 ;
 param dest := 10 ;
-param alpha := 0.3 ;
+param alpha := 0.8 ;
 
 param:  
 	ARCOS:  
 		tau_worst tau_best cost :=
-         1 2 3 1 5		#Start
-		 1 3 2 0 10		#coger taza
-		 1 5 10 5 50	#encender
-		 3 4 2 1 10		#llenar maquina de cafe
+         1 2 3 1 2		#Start
+		 1 3 2 0 1		#coger taza
+		 1 5 10 5 5		#encender
+		 3 4 2 1 1		#llenar maquina de cafe
 		 2 6 0 0 0
 		 4 6 0 0 0
 		 5 6 0 0 0
-		 6 8 10 7 25	#hacer cafe
-		 6 7 5 2 10		#coger cuchara + plato + azucar + condimentos
+		 6 8 10 7 3		#hacer cafe
+		 6 7 5 2 2		#coger cuchara + plato + azucar + condimentos
 		 7 9 0 0 0
 		 8 9 0 0 0
-		 9 10 5 3 5		#cobrar cliente
+		 9 10 5 3 1		#cobrar cliente
 		 ;

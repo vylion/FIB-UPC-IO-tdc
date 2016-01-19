@@ -1,5 +1,7 @@
 reset;
 model io-tdc/cpm2.mod;
-data io-tdc/cpm-cafe2.dat;
+#data io-tdc/cpm-cafe2.dat;
+data io-tdc/cpm-cafe3.dat;
+#data io-tdc/cpm-examen.dat;
 option solver gurobi;
 solve;
