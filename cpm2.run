@@ -1,0 +1,5 @@
+reset;
+model io-tdc/cpm2.mod;
+data io-tdc/cpm-cafe2.dat;
+option solver gurobi;
+solve;
