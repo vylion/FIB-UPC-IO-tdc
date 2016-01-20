@@ -12,8 +12,8 @@ param alfa {(i,j) in ARC_FACT}>0;			# Coste base fijo de produccion en factoria 
 param beta {(i,j) in ARC_FACT};				# Coeficiente de coste de produccion por unidad en factoria j
 param dtotal>0;								# demanda total entre todos los mercados
 param theta {i in FACT}>=0;					# objetivos de produccion
-param M >=0;								# impuestos sobre sigma_pos
-param N >=0;								# subvención sobre sigma_neg
+param M {i in FACT}>=0;						# impuestos sobre sigma_pos
+param N {i in FACT}>=0;						# subvención sobre sigma_neg
 var thtotal = sum {i in FACT} theta[i];		# objetivo total
 var vi {i in FACT} = M[i] - N[i];			# diferencia de impuestos/subvencion
 
