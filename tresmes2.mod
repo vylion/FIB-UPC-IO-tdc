@@ -25,10 +25,10 @@ arc xij {(i,j) in ARCTR} >= 0,
      from P[i], to MR[j];					# Arcos de transporte entre los nodos factorias y mercados
 arc s_i {i in FACT} >=0,
      from PO[i], to P[i];					# Arcos de produccion entre los nodos objetivos y sus factorias
-arc sigma_pos_i {i in FACT} >=0,
-     from O_R[i], to PO[i];					# Arcos de produccion entre los nodos origen y objetivos de factorias
-arc sigma_neg_i {i in FACT} >=0,
-     from PO[i], to O_R[i];					# Arcos de produccion entre los nodos objetivos de factorias y origen
+arc sigma_pos_i {(i,j) in ARC_FACT} >=0,
+     from O_R[i], to PO[j];					# Arcos de produccion entre los nodos origen y objetivos de factorias
+arc sigma_neg_i {(i,j) in ARC_FACT} >=0,
+     from PO[j], to O_R[i];					# Arcos de produccion entre los nodos objetivos de factorias y origen
 	 
 minimize FF:
   (sum {(i,j) in ARC_FACT} (alfa[i,j]*s_i[i,j]+0.5*beta[i,j]*s_i[i,j]^2)) + 
