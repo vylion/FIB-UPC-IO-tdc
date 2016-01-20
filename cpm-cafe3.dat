@@ -2,7 +2,7 @@ set NODOS := 1 2 3 4 5 6 7 8 9 10 ;
 
 param orig := 1 ;
 param dest := 10 ;
-param alpha := 0.95 ;
+param alpha := 1 ;
 
 param:  
 	ARCOS:  

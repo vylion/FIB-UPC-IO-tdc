@@ -11,10 +11,10 @@ param:
 		 1 3 5 1 8		#explicar platos
 		 2 4 0 0 0
 		 3 4 0 0 0
-		 4 5 4 2 2		#servir agua
-		 4 6 3 5 2 		#servir pan
-		 4 7 3 5 2		#servir pica pica
-		 4 8 10 4 10		#preparar comida
+		 4 5 4 2 5		#servir agua
+		 4 6 5 3 5 		#servir pan
+		 4 7 5 3 5		#servir pica pica
+		 4 8 10 4 5		#preparar comida
 		 5 9 0 0 0
 		 6 9 0 0 0
 		 7 9 0 0 0
