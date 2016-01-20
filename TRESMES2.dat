@@ -13,8 +13,8 @@ param dtotal:=600;
 param alfa:= P1 600  P2 600;
 param beta:= P1 -0.5 P2 -0.5;
 
-param theta:= P1 100 P2 100;
-param M:= P1 5 P2 6;
-param N:= P1 8 P2 2;
+param theta:= P1 40 P2 40;
+param M:= P1 5 P2 5;
+param N:= P1 5 P2 5;
 
 
