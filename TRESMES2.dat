@@ -10,8 +10,8 @@ param a:=    O M1 10   O M2 12  O M3 9;
 param b:=    O M1 3    O M2 2   O M3 4;
 param dmax:= M1 200 M2 200 M3 200;
 param dtotal:=600;
-param alfa:= O P1 600  O P2 600;
-param beta:= O P1 -0.5 O P2 -0.5;
+param alfa:= P1 600  P2 600;
+param beta:= P1 -0.5 P2 -0.5;
 
 param theta:= P1 100 P2 100;
 param M:= P1 5 P2 6;

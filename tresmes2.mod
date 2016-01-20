@@ -8,14 +8,14 @@ param CTRANS {(i,j) in ARCTR} >=0;			# Costes de transporte
 param a {(i,j) in ARC_EXC}>=0;				# Precio base fijo en mercado j cuando el producto cubre la demanda
 param b {(i,j) in ARC_EXC};					# Coeficiente de subida de precio en mercado j por exceso de demanda (falta de productos)
 param dmax {j in MERC}>0;					# Demanda maxima (absorbida por el mercado + exceso de producto)
-param alfa {(i,j) in ARC_FACT}>0;			# Coste base fijo de produccion en factoria j
-param beta {(i,j) in ARC_FACT};				# Coeficiente de coste de produccion por unidad en factoria j
+param alfa {i in FACT}>0;					# Coste base fijo de produccion en factoria j
+param beta {i in FACT};						# Coeficiente de coste de produccion por unidad en factoria j
 param dtotal>0;								# demanda total entre todos los mercados
 param theta {i in FACT}>=0;					# objetivos de produccion
 param M {i in FACT}>=0;						# impuestos sobre sigma_pos
 param N {i in FACT}>=0;						# subvención sobre sigma_neg
-var thtotal = sum {i in FACT} theta[i];		# objetivo total
-var vi {i in FACT} = M[i] - N[i];			# diferencia de impuestos/subvencion
+param thtotal = sum {i in FACT} theta[i];	# objetivo total
+param vi {i in FACT} = M[i] - N[i];			# diferencia de impuestos/subvencion
 
 node O_R {l in ORIGEN}: net_out = dtotal - thtotal;
 # flow out (suma de demandas maximas) - flow in (0)
@@ -34,8 +34,8 @@ arc sigma_neg_i {(i,j) in ARC_FACT} >=0,
      from PO[j], to O_R[i];					# Arcos de produccion entre los nodos objetivos de factorias y origen
 	 
 minimize FF:
-  (sum {(i,j) in ARC_FACT} (alfa[i,j]*s_i[i,j]+0.5*beta[i,j]*s_i[i,j]^2)) + 
+  (sum {i in FACT} (alfa[i]*s_i[i]+0.5*beta[i]*s_i[i]^2)) + 
   (sum {(p,q) in ARCTR} CTRANS[p,q]*xij[p,q])+
   (sum {(r,s) in ARC_EXC} (a[r,s]*fict[r,s] + 0.5*b[r,s]*fict[r,s]^2))+
-  (sum {(x,y) in ARC_FACT} (M * sigma_pos_i[x,y] + N * sigma_neg_i[i,j]);
+  (sum {(x,y) in ARC_FACT} (M[y] * sigma_pos_i[x,y] + N[y] * sigma_neg_i[x,y]));
 
