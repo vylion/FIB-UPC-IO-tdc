@@ -3,7 +3,7 @@ set MERC;									# Mercados
 set ARCTR within (FACT cross MERC);			# Arcos de transporte
 set ORIGEN;									# Nodo origen
 set ARC_FACT within (ORIGEN cross FACT);	# Arcos de produccion
-set ARC_EXC within (ORIGEN cross MERC);		# Arcos de exceso de producto
+set ARC_EXC within (ORIGEN cross MERC);		# Arcos de exceso de demanda
 param CTRANS {(i,j) in ARCTR} >=0;			# Costes de transporte
 param a {(i,j) in ARC_EXC}>=0;				# Precio base fijo en mercado j cuando el producto cubre la demanda
 param b {(i,j) in ARC_EXC};					# Coeficiente de subida de precio en mercado j por exceso de demanda (falta de productos)
@@ -11,6 +11,9 @@ param dmax {j in MERC}>0;					# Demanda maxima (absorbida por el mercado + exces
 param alfa {(i,j) in ARC_FACT}>0;			# Coste base fijo de produccion en factoria j
 param beta {(i,j) in ARC_FACT};				# Coeficiente de coste de produccion por unidad en factoria j
 param dtotal>0;								# demanda total entre todos los mercados
+param theta {i in FACT}>=0;					# objetivos de produccion
+param sigma_pos {(i,j) in ARC_FACT}>=0;		# exceso sobre objetivo
+param sigma_neg {(i,j) in ARC_FACT}>=0;		# defecto sobre objetivo
 
 node O_R {l in ORIGEN}: net_out = dtotal;	# flow out (suma de demandas maximas) - flow in (0)
 node P {i in FACT};							# Nodos de factorias
