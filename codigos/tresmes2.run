@@ -1,0 +1,5 @@
+reset;
+model io-tdc/tresmes2.mod;
+data io-tdc/TRESMES2.dat;
+option solver gurobi;
+solve;

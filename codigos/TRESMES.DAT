@@ -1,0 +1,16 @@
+set FACT:= P1 P2;
+set MERC:= M1 M2 M3;
+set ARCTR:= (P1,M1) (P1,M2) (P1,M3) (P2,M1) (P2,M2) (P2,M3);
+set ORIGEN:= O;
+set ARC_FACT:= (O,P1) (O,P2);
+set ARC_EXC:= (O,M1) (O,M2) (O,M3); 
+param CTRANS:= P1 M1 1  P1 M2 2  P1 M3 1.5
+               P2 M1 3  P2 M2 2  P2 M3 2.5;
+param a:=    O M1 10   O M2 12  O M3 9;
+param b:=    O M1 3    O M2 2   O M3 4;
+param dmax:= M1 200 M2 200 M3 200;
+param dtotal:=600;
+param alfa:= O P1 600  O P2 600;
+param beta:= O P1 -0.5 O P2 -0.5;
+
+
