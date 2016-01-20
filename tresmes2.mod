@@ -12,18 +12,24 @@ param alfa {(i,j) in ARC_FACT}>0;			# Coste base fijo de produccion en factoria 
 param beta {(i,j) in ARC_FACT};				# Coeficiente de coste de produccion por unidad en factoria j
 param dtotal>0;								# demanda total entre todos los mercados
 param theta {i in FACT}>=0;					# objetivos de produccion
-param sigma_pos {(i,j) in ARC_FACT}>=0;		# exceso sobre objetivo
-param sigma_neg {(i,j) in ARC_FACT}>=0;		# defecto sobre objetivo
+var thtotal = sum {i in FACT} theta[i];		# objetivo total
 
-node O_R {l in ORIGEN}: net_out = dtotal;	# flow out (suma de demandas maximas) - flow in (0)
+node O_R {l in ORIGEN}: net_out = dtotal - thtotal;
+# flow out (suma de demandas maximas) - flow in (0)
 node P {i in FACT};							# Nodos de factorias
+node PO {i in FACT};						# Nodos objetivo
 node MR {j in MERC}: net_in = dmax[j];		# Nodos de mercados
 arc fict {(l,j) in ARC_EXC} >= 0,
      from O_R[l], to MR[j];					# Arcos ficticios de exceso de demanda
 arc xij {(i,j) in ARCTR} >= 0,
      from P[i], to MR[j];					# Arcos de transporte entre los nodos factorias y mercados
-arc s_i {(i,j) in ARC_FACT} >=0,
-     from O_R[i], to P[j];					# Arcos de produccion entre los nodos origen y factorias
+arc s_i {i in FACT} >=0,
+     from PO[i], to P[i];					# Arcos de produccion entre los nodos objetivos y sus factorias
+arc sigma_pos_i {i in FACT} >=0,
+     from O_R[i], to PO[i];					# Arcos de produccion entre los nodos origen y objetivos de factorias
+arc sigma_neg_i {i in FACT} >=0,
+     from PO[i], to O_R[i];					# Arcos de produccion entre los nodos objetivos de factorias y origen
+	 
 minimize FF:
   (sum {(i,j) in ARC_FACT} (alfa[i,j]*s_i[i,j]+0.5*beta[i,j]*s_i[i,j]^2)) + 
   (sum {(p,q) in ARCTR} CTRANS[p,q]*xij[p,q])+
